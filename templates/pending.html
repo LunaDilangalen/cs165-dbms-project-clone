@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>CS 165 Database Systems Project</title>
+    {% if apply_id %}
+      <h4>This is Pending Application {{ apply_id }}</h4>
+      <form class="" action="/update" method="POST">
+        <h4>Credit Card Option</h4>
+        <input type="hidden" name="application_id" value="{{ data.id }}">
+
+        <input type="hidden" name="old_card_association" value="{{ data.card_association }}">
+        <input name="card_association" list="associations" placeholder="Card Association" value="{{ data.card_association }}">
+          <datalist id="associations">
+            <option value="VISA">
+            <option value="Mastercard">
+            <option value="JCB">
+            <option value="American Express">
+          </datalist>
+        <input type="hidden" name="old_card_type" value="{{ data.card_type }}">
+        <input name="card_type" list="types" placeholder="Card Type" value="{{ data.card_type }}">
+          <datalist id="types">
+            <option value="Diamond">
+            <option value="Platinum">
+            <option value="Gold">
+            <option value="Silver">
+          </datalist>
+        <br>
+
+        <h4>Personal Info</h4>
+        <input type="hidden" name="old_full_name" value="{{ data.full_name }}">
+        <input type="text" id="full_name" name="full_name"  maxlength="100" size="20" placeholder="Full Name" value="{{ data.full_name }}">
+        <br>
+        <input type="hidden" name="old_education" value="{{ data.education }}">
+        <input name="education" list="attainments" placeholder="Education" value="{{ data.education }}">
+          <datalist id="attainments">
+            <option value="High School">
+            <option value="Undergraduate">
+            <option value="Graduate">
+            <option value="Postgraduate">
+          </datalist>
+        <br>
+        <label>Birthday</label>
+        <br>
+        <input type="hidden" name="old_birthdate" value="{{ data.birthdate }}">
+        <input type="date" id="birthdate" name="birthdate"  placeholder="Date of Birth" value="{{ birthdate }}">
+
+        <input type="hidden" name="old_birthplace" value="{{ data.birthplace }}">
+        <input type="text" id="birthplace" name="birthplace"  maxlength="50" size="20" placeholder="Place of Birth" value="{{ data.birthplace }}">
+        <br>
+
+        <input type="hidden" name="old_sex" value="{{ data.sex }}">
+        <input id="sex" name="sex" list="sexes" placeholder="Sex" value="{{ data.sex }}">
+          <datalist id="sexes">
+            <option value="Male">
+            <option value="Female">
+            <!-- </option></option></option> -->
+          </datalist>
+
+        <br>
+        <input type="hidden" name="old_phone_number" value="{{ data.phone_number }}">
+        <input type="text" id="phone_number" name="phone_number"  maxlength="11" size="20" placeholder="Phone Number" value={{ data.phone_number }}>
+        <br>
+
+        <input type="hidden" name="old_email_address" value="{{ data.email_address }}">
+        <input type="text" id="email_address" name="email_address"  maxlength="50" size="20" placeholder="E-mail Address" value="{{ data.email_address }}">
+        <br>
+        <input type="hidden" name="old_present_address" value="{{ data.present_address }}">
+        <input type="text" id="present_address" name="present_address"  maxlength="200" size="50" placeholder="Present Address" value="{{ data.present_address }}">
+        <br>
+
+        <h4>Employment</h4>
+        <input id="employment_type" name="employment_type" list="employment_types" placeholder="Employment Type" value="{{ data.employment_type }}">
+          <datalist id="employment_types">
+            <option value="Full-time">
+            <option value="Part-time">
+            <!-- </option></option></option> -->
+          </datalist>
+        <input type="text" id="job_title" name="job_title"  maxlength="50" size="20" placeholder="Job Title" value="{{ data.job_title }}">
+        <br>
+        <input type="number" id="tenure" name="tenure" placeholder="Tenure" value="{{ data.tenure }}">
+        <input type="number" id="gross_annual_income" name="gross_annual_income" placeholder="Gross Annual Income" value="{{ data.gross_annual_income }}">
+        <br>
+
+        <!-- <h4>Latest Owned Card</h4>
+        <input type="number" id="card_number" name="card_number" placeholder="Card number" value="{{ data.card_number }}">
+        Member Since <input type="date" id="member_since" name="member_since" value="{{ data.member_since }}">
+        <br>
+        <input type="number" id="credit_limit" name="credit_limit" placeholder="Credit Limit" value="{{ data.credit_limit }}"> -->
+
+        <br>
+        <input type="submit" value="Update">
+
+      </form>
+      {% else %}
+        <h4>List All Pending Applications</h4>
+        <!-- <table border="1px"> -->
+        <table border="1" cellpadding="3" cellspacing="3">
+        <thead>
+            <tr>
+                <th colspan="10">Pending Applications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Application #</td>
+                <td>Card Association</td>
+                <td>Card Type</td>
+                <td>Full Name</td>
+                <td>E-mail Address</td>
+                <td>Employment Type</td>
+                <td>Gross Annual Income</td>
+                <td>Card Number</td>
+                <td>Member Since</td>
+                <td>Delete?</td>
+            </tr>
+            {% for row in data %}
+                <tr>
+                  <td><a href="{{ row.id }}">{{ row.id }}</td>
+                  <td>{{ row.card_association }}</td>
+                  <td>{{ row.card_type }}</td>
+                  <td>{{ row.full_name }}</td>
+                  <td>{{ row.email_address }}</td>
+                  <td>{{ row.employment_type }}</td>
+                  <td>{{ row.gross_annual_income }}</td>
+                  <td>{{ row.card_number }}</td>
+                  <td>{{ row.member_since }}</td>
+                  <td>
+                    <form method="POST" action="/delete">
+                      <input type="hidden" value="{{ row.id }}" name="id">
+                      <input type="submit" value="Delete">
+                    </form>
+                  </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <!-- </tbody> -->
+        <!-- </table> -->
+        <button type="button" name="new_apply_button"><a href='/apply'>New Application</button>
+      {% endif %}
+
+
+
+  </head>
+  <body>
+
+  </body>
+</html>

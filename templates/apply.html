@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CS 165 Database Systems Project</title>
+    <h3>Application Form</h3>
+
+    <form class="" action="/apply" method="POST">
+      <h4>Credit Card Option</h4>
+      <input name="card_association" list="associations" placeholder="Card Association">
+        <datalist id="associations">
+          <option value="VISA">
+          <option value="Mastercard">
+          <option value="JCB">
+          <option value="American Express">
+        </datalist>
+      <input name="card_type" list="types" placeholder="Card Type">
+        <datalist id="types">
+          <option value="Diamond">
+          <option value="Platinum">
+          <option value="Gold">
+          <option value="Silver">
+        </datalist>
+      <br>
+
+      <h4>Personal Info</h4>
+      <input type="text" id="full_name" name="full_name"  maxlength="100" size="20" placeholder="Full Name">
+      <br>
+      <input name="education" list="attainments" placeholder="Education">
+        <datalist id="attainments">
+          <option value="High School">
+          <option value="Undergraduate">
+          <option value="Graduate">
+          <option value="Postgraduate">
+        </datalist>
+      <br>
+      <label>Birthday</label>
+      <br>
+      <input type="date" id="birthdate" name="birthdate"  placeholder="Date of Birth">
+      <input type="text" id="birthplace" name="birthplace"  maxlength="50" size="20" placeholder="Place of Birth">
+      <br>
+      <input id="sex" name="sex" list="sexes" placeholder="Sex">
+        <datalist id="sexes">
+          <option value="Male">
+          <option value="Female">
+          <!-- </option></option></option> -->
+        </datalist>
+
+      <br>
+      <input type="text" id="phone_number" name="phone_number"  maxlength="11" size="20" placeholder="Phone Number">
+      <br>
+      <input type="text" id="email_address" name="email_address"  maxlength="50" size="20" placeholder="E-mail Address">
+      <br>
+      <input type="text" id="present_address" name="present_address"  maxlength="200" size="50" placeholder="Present Address">
+      <br>
+
+      <h4>Employment</h4>
+      <input id="employment_type" name="employment_type" list="employment_types" placeholder="Employment Type">
+        <datalist id="employment_types">
+          <option value="Full-time">
+          <option value="Part-time">
+          <!-- </option></option></option> -->
+        </datalist>
+      <input type="text" id="job_title" name="job_title"  maxlength="50" size="20" placeholder="Job Title">
+      <br>
+      <input type="number" id="tenure" name="tenure" placeholder="Tenure">
+      <input type="number" id="gross_annual_income" name="gross_annual_income" placeholder="Gross Annual Income">
+      <br>
+
+      <h4>Latest Owned Card</h4>
+      <input type="number" id="card_number" name="card_number" placeholder="Card number">
+      Member Since <input type="date" id="member_since" name="member_since">
+      <br>
+      <input type="number" id="credit_limit" name="credit_limit" placeholder="Credit Limit">
+
+      <br><br>
+
+      <button type="submit" name="button" class="btn btn-primary">Apply</button>
+
+    </form>
+
+
+
+
+  </head>
+  <body>
+
+  </body>
+</html>
